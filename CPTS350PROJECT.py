@@ -83,83 +83,82 @@ def bddRR2star(rr2):
             break
     return rr2
 
-
 class TestGraph(unittest.TestCase):
     def testEVEN(self):
-        # Test for the EVEN function
-        # Generate a list of even numbers
+        #These tests are the given test in the assignment page
+
+        # If I don't have this list here gives error
+        # even though I declared it already
         self.evenList = [True if i % 2 == 0 else False for i in range(32)]
         evenBDD = createBDDString(self.evenList, 'x')
 
-        # EVEN(14) Test
-        nodeFound = findNode(evenBDD, 14, 'x')
+        #EVEN(14) Test
+        nodeFound = findNode(evenBDD,14,'x')
         self.assertTrue(nodeFound)
 
-        # EVEN(13) Test
-        nodeNotFound = findNode(evenBDD, 13, 'x')
+        #EVEN(13) Test
+        nodeNotFound = findNode(evenBDD,13,'x')
         self.assertFalse(nodeNotFound)
 
     def testPRIME(self):
-        # Test for the PRIME function
         primeList = [3, 5, 7, 11, 13, 17, 19, 23, 29, 31]
         newPrimeList = [True if i in primeList else False for i in range(32)]
 
         primeBDD = createBDDString(newPrimeList, 'y')
+        #print(primeBDD)
 
-        # PRIME(7) Test
-        nodeFound = findNode(primeBDD, 7, 'y')
+        #PRIME(7) Test
+        nodeFound = findNode(primeBDD,7,'y')
         self.assertTrue(nodeFound)
 
-        # PRIME(2) Test
-        nodeNotFound = findNode(primeBDD, 2, 'y')
+        #PRIME(2) Test
+        nodeNotFound = findNode(primeBDD,2,'y')
         self.assertFalse(nodeNotFound)
 
     def testRR(self):
-        # Test for the RR function
+
         graphG = initGraph()
 
         rrBDD = graphToBDD(graphG)
+        #print(rrBDD)
 
-        # RR(27,3) Test
-        edgeFound = findEdge(rrBDD, 27, 3)
+        #RR(27,3) Test
+        edgeFound = findEdge(rrBDD,27,3)
         self.assertTrue(edgeFound)
 
-        # RR(16,20) Test
-        edgeNotFound = findEdge(rrBDD, 16, 20)
+        #RR(16,20) Test
+        edgeNotFound = findEdge(rrBDD,16,20)
         self.assertFalse(edgeNotFound)
 
     def testRR2(self):
-        # Test for the RR2 function
         graphG = initGraph()
 
         rr1 = graphToBDD(graphG)
         rr2 = bddRR2(rr1)
 
-        # RR2(27,6) Test
-        edgeFound = findEdge(rr2, 27, 6)
+        #RR2(27,6) Test
+        edgeFound = findEdge(rr2,27,6)
         self.assertTrue(edgeFound)
 
-        # RR2(27,9) Test
-        edgeNotFound = findEdge(rr2, 27, 9)
+        #RR2(27,9) Test
+        edgeNotFound = findEdge(rr2,27,9)
         self.assertFalse(edgeNotFound)
 
     def testRR2star(self):
-        # Test for the RR2star function
         graphG = initGraph()
         rr1 = graphToBDD(graphG)
         rr2 = bddRR2(rr1)
         rr2star = bddRR2star(rr2)
-
-        # RR2star(27,6) Test
-        edgeFound = findEdge(rr2star, 27, 6)
+        edgeFound = findEdge(rr2star, 27,6)
         self.assertTrue(edgeFound)
 
-    def testStatement(self):
-        # Test for the statement in the assignment
+    def testStatemnt(self):
         graphG = initGraph()
         primeList = [3, 5, 7, 11, 13, 17, 19, 23, 29, 31]
         newPrimeList = [True if i in primeList else False for i in range(32)]
         evenList = [True if i % 2 == 0 else False for i in range(32)]
+        varX = [bddvar(f"{'x'*2}" + str(i)) for i in range(5)]
+        varY = [bddvar(f"{'y'*2}" + str(i)) for i in range(5)]
 
         rr1 = graphToBDD(graphG)
         rr2 = bddRR2(rr1)
@@ -169,6 +168,10 @@ class TestGraph(unittest.TestCase):
         evenBDD = createBDDString(evenList, 'y')
         evenNodesSteps = evenBDD & rr2star
 
-        # Could not figure out how to proceed from here
-        # Stuck on how to further determine if there is an even number of steps
-        # to reach a prime node!
+        #Could not figure out how to procede from here got stuck on 
+        #How I can further figure out if there are an even number of
+        #Steps !!!!!!
+
+if __name__ == "__main__":
+    
+    unittest.main()
