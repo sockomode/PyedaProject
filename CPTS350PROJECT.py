@@ -167,11 +167,7 @@ class TestGraph(unittest.TestCase):
         primeBDD = createBDDString(newPrimeList, 'x')
         evenBDD = createBDDString(evenList, 'y')
         evenNodesSteps = evenBDD & rr2star
-
-        #Could not figure out how to procede from here got stuck on 
-        #How I can further figure out if there are an even number of
-        #Steps !!!!!!
-
+        
 if __name__ == "__main__":
     
     unittest.main()
