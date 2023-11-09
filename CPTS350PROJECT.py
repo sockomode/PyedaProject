@@ -85,19 +85,14 @@ def bdd_rr2star(rr2):
 
 class TestGraph(unittest.TestCase):
     def test_even(self):
-        # These tests are the given test in the assignment page
 
-        # If I don't have this list here gives error
-        # even though I declared it already
         self.even_list = [True if i % 2 == 0 else False for i in range(32)]
         even_bdd = create_bdd_string(self.even_list, 'x')
 
-        # EVEN(14) Test
-        node_found = find_node(even_bdd, 14, 'x')
+        node_found = find_node(even_bdd, 14, 'x') #Testing 14 for even
         self.assertTrue(node_found)
 
-        # EVEN(13) Test
-        node_not_found = find_node(even_bdd, 13, 'x')
+        node_not_found = find_node(even_bdd, 13, 'x') #Testing 13 for even
         self.assertFalse(node_not_found)
 
     def test_prime(self):
@@ -105,14 +100,11 @@ class TestGraph(unittest.TestCase):
         new_prime_list = [True if i in prime_list else False for i in range(32)]
 
         prime_bdd = create_bdd_string(new_prime_list, 'y')
-        # print(prime_bdd)
 
-        # PRIME(7) Test
-        node_found = find_node(prime_bdd, 7, 'y')
+        node_found = find_node(prime_bdd, 7, 'y') #Testing 7
         self.assertTrue(node_found)
 
-        # PRIME(2) Test
-        node_not_found = find_node(prime_bdd, 2, 'y')
+        node_not_found = find_node(prime_bdd, 2, 'y') #Testing 2
         self.assertFalse(node_not_found)
 
     def test_rr(self):
@@ -120,14 +112,11 @@ class TestGraph(unittest.TestCase):
         graph_g = init_graph()
 
         rr_bdd = graph_to_bdd(graph_g)
-        # print(rr_bdd)
 
-        # RR(27,3) Test
-        edge_found = find_edge(rr_bdd, 27, 3)
+        edge_found = find_edge(rr_bdd, 27, 3) #Testing RR(27,3)
         self.assertTrue(edge_found)
 
-        # RR(16,20) Test
-        edge_not_found = find_edge(rr_bdd, 16, 20)
+        edge_not_found = find_edge(rr_bdd, 16, 20) #Testing RR(16,20)
         self.assertFalse(edge_not_found)
 
     def test_rr2(self):
@@ -136,15 +125,13 @@ class TestGraph(unittest.TestCase):
         rr1 = graph_to_bdd(graph_g)
         rr2 = bdd_rr2(rr1)
 
-        # RR2(27,6) Test
-        edge_found = find_edge(rr2, 27, 6)
+        edge_found = find_edge(rr2, 27, 6) #Testing RR2(27,6)
         self.assertTrue(edge_found)
 
-        # RR2(27,9) Test
-        edge_not_found = find_edge(rr2, 27, 9)
+        edge_not_found = find_edge(rr2, 27, 9) #Testing RR2(27,9)
         self.assertFalse
 
-def test_rr2star(self):
+    def test_rr2star(self):
         graph_g = init_graph()
         rr1 = graph_to_bdd(graph_g)
         rr2 = bdd_rr2(rr1)
@@ -168,7 +155,5 @@ def test_rr2star(self):
         even_bdd = create_bdd_string(even_list, 'y')
         even_nodes_steps = even_bdd & rr2star
 
-
 if __name__ == "__main__":
     unittest.main()
-Let me know if you need anything else!
